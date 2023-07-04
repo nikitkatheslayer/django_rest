@@ -10,5 +10,3 @@ class CarModelViewSet(viewsets.ModelViewSet):
     queryset = Car.objects.all()
     serializer_class = CarModelSerializer
 
-    def get_queryset(self):
-        return Car.objects.all()
