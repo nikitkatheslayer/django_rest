@@ -14,24 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, re_path
-from rest_framework.routers import DefaultRouter, SimpleRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
-from carsapp.views import CarModelViewSet
+from carsapp.views import CarViewSet, HistoryCarViewSet, DetailCarViewSet
+from todoapp.views import projectViewSet, todoViewSet
 from users.views import UserModelViewSet
 
 router = DefaultRouter()
-router.register('cars', CarModelViewSet)
-router.register('user', UserModelViewSet)
+router.register('cars', CarViewSet)
+router.register('history_car', HistoryCarViewSet)
+router.register('detail_car', DetailCarViewSet)
+router.register('user_list', UserModelViewSet)
+router.register('projects', projectViewSet)
+router.register('todo', todoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
-    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
-    path('auth/', include('djoser.urls.authtoken')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/auth/', include('djoser.urls.authtoken')),
 ]

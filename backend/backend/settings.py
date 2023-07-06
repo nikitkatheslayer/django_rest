@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'carsapp.apps.CarsConfig',
+    'todoapp.apps.TodoappConfig',
     'rest_framework.authtoken',
     'djoser'
 ]
